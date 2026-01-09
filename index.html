@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desmond Tutu - CS Student & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background: linear-gradient(
+          135deg,
+          #e0f2fe 0%,
+          #bfdbfe 25%,
+          #ddd6fe 75%,
+          #e0e7ff 100%
+        );
+        background-attachment: fixed;
+      }
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #0284c7 0%,
+          #2563eb 50%,
+          #7c3aed 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 3s ease infinite;
+      }
+      @keyframes gradient-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+      .card-hover {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .card-hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(59, 130, 246, 0.1),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+      .card-hover:hover::before {
+        left: 100%;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+      }
+      .photo-frame {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+        padding: 8px;
+        box-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+        animation: rotate-gradient 4s linear infinite,
+          float 3s ease-in-out infinite;
+        background-size: 200% 200%;
+      }
+      @keyframes rotate-gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: #94a3b8;
+        text-align: center;
+        padding: 20px;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      section {
+        scroll-margin-top: 80px;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+      .btn-primary:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+      }
+      .skill-icon {
+        transition: all 0.3s ease;
+      }
+      .skill-icon:hover {
+        transform: scale(1.2) rotate(5deg);
+      }
+      .nav-glass {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+      .section-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(59, 130, 246, 0.2);
+      }
+      .project-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(148, 163, 184, 0.3);
+      }
+      .project-icon-bg {
+        position: relative;
+        overflow: hidden;
+      }
+      .project-icon-bg::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+      .contact-icon {
+        transition: all 0.3s ease;
+      }
+      .contact-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      }
+      .hero-text {
+        animation: fadeInUp 1s ease-out;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .floating-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float-random 20s infinite ease-in-out;
+      }
+      .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .shape-2 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #ec4899, #f43f5e);
+        top: 60%;
+        right: 15%;
+        animation-delay: 5s;
+      }
+      .shape-3 {
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        bottom: 10%;
+        left: 20%;
+        animation-delay: 10s;
+      }
+      @keyframes float-random {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(50px, -50px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-30px, 30px) rotate(240deg);
+        }
+      }
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b82f6,
+          #8b5cf6,
+          transparent
+        );
+        margin: 0 auto;
+        width: 60%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-glass border-b border-blue-200 z-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <button
+            onclick="scrollToSection('home')"
+            class="text-2xl font-bold gradient-text cursor-pointer hover:opacity-80 transition"
+          >
+            DT
+          </button>
+          <div class="hidden md:flex space-x-8">
+            <button
+              onclick="scrollToSection('home')"
+              class="text-slate-700 hover:text-blue-600 transition font-semibold relative group"
+            >
+              Home<span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"
+              ></span>
+            </button>
+            <button
+              onclick="scrollToSection('about')"
+              class="text-slate-700 hover:text-blue-600 transition font-semibold relative group"
+            >
+              About<span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"
+              ></span>
+            </button>
+            <button
+              onclick="scrollToSection('skills')"
+              class="text-slate-700 hover:text-blue-600 transition font-semibold relative group"
+            >
+              Skills<span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"
+              ></span>
+            </button>
+            <button
+              onclick="scrollToSection('projects')"
+              class="text-slate-700 hover:text-blue-600 transition font-semibold relative group"
+            >
+              Projects<span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"
+              ></span>
+            </button>
+            <button
+              onclick="scrollToSection('contact')"
+              class="text-slate-700 hover:text-blue-600 transition font-semibold relative group"
+            >
+              Contact<span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"
+              ></span>
+            </button>
+          </div>
+          <button
+            onclick="toggleMobileMenu()"
+            class="md:hidden text-2xl text-slate-700"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-blue-200"
+      >
+        <div class="px-4 py-4 space-y-3">
+          <button
+            onclick="scrollToSection('home'); toggleMobileMenu()"
+            class="block w-full text-left text-slate-700 hover:text-blue-600 transition py-2 font-semibold"
+          >
+            Home
+          </button>
+          <button
+            onclick="scrollToSection('about'); toggleMobileMenu()"
+            class="block w-full text-left text-slate-700 hover:text-blue-600 transition py-2 font-semibold"
+          >
+            About
+          </button>
+          <button
+            onclick="scrollToSection('skills'); toggleMobileMenu()"
+            class="block w-full text-left text-slate-700 hover:text-blue-600 transition py-2 font-semibold"
+          >
+            Skills
+          </button>
+          <button
+            onclick="scrollToSection('projects'); toggleMobileMenu()"
+            class="block w-full text-left text-slate-700 hover:text-blue-600 transition py-2 font-semibold"
+          >
+            Projects
+          </button>
+          <button
+            onclick="scrollToSection('contact'); toggleMobileMenu()"
+            class="block w-full text-left text-slate-700 hover:text-blue-600 transition py-2 font-semibold"
+          >
+            Contact
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section
+      id="home"
+      class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center relative z-10"
+    >
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8 hero-text">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4">
+              <span class="gradient-text">Desmond Tutu</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-800 mb-2 font-bold">
+              Computer Science Student & Developer
+            </p>
+            <p
+              class="text-lg text-slate-600 font-medium flex items-center gap-2"
+            >
+              <i class="fas fa-map-marker-alt text-blue-600"></i> University of
+              Nairobi, Kenya
+            </p>
+            <p class="text-slate-700 text-lg leading-relaxed font-medium">
+              I'm a Kenyan developer passionate about MERN stack, web
+              development, and exploring topics from snake biology to Christian
+              apologetics. Chess pops up now and then, though coding usually
+              wins out.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button
+                onclick="scrollToSection('projects')"
+                class="px-8 py-4 btn-primary text-white rounded-xl font-bold shadow-lg relative z-10"
+              >
+                <i class="fas fa-code mr-2"></i> View My Work
+              </button>
+              <button
+                onclick="scrollToSection('contact')"
+                class="px-8 py-4 border-3 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-xl font-bold transition shadow-lg"
+              >
+                <i class="fas fa-paper-plane mr-2"></i> Let's Connect
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="photo-frame">
+              <img
+                src="images/MyPic.jpeg"
+                alt="Desmond Tutu"
+                class="w-full h-full object-cover rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-extrabold mb-4 text-center gradient-text">
+          About Me
+        </h2>
+        <div class="section-divider mb-12"></div>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="space-y-6">
+            <p class="text-slate-700 text-lg leading-relaxed font-medium">
+              I'm pursuing Computer Science at the University of Nairobi, loving
+              every moment of transforming ideas into functional web
+              applications.
+            </p>
+            <p class="text-slate-700 text-lg leading-relaxed font-medium">
+              I focus on full-stack MERN development, from REST APIs to
+              responsive UIs, aiming to create practical solutions for Kenya and
+              Africa.
+            </p>
+            <p class="text-slate-700 text-lg leading-relaxed font-medium">
+              Outside tech: snake biology, physics, Christian apologetics,
+              comparative religion, and occasional chess. Everything connects
+              somehow.
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="section-card p-8 rounded-2xl card-hover shadow-xl">
+              <h3
+                class="text-2xl font-bold mb-4 text-blue-600 flex items-center gap-3"
+              >
+                <i class="fas fa-graduation-cap text-3xl"></i> Education
+              </h3>
+              <p class="text-slate-800 font-bold text-lg">
+                Bachelor of Science in Computer Science
+              </p>
+              <p class="text-slate-600 font-medium">
+                University of Nairobi, Kenya
+              </p>
+              <p class="text-blue-600 text-sm mt-2 font-semibold">
+                <i class="fas fa-circle text-xs mr-1"></i> Current Student
+              </p>
+            </div>
+            <div class="section-card p-8 rounded-2xl card-hover shadow-xl">
+              <h3
+                class="text-2xl font-bold mb-4 text-purple-600 flex items-center gap-3"
+              >
+                <i class="fas fa-lightbulb text-3xl"></i> Interests
+              </h3>
+              <p class="text-slate-700 font-medium leading-relaxed">
+                Web development, software engineering, snake biology, physics,
+                Christian apologetics, comparative religion, and chess.
+              </p>
+            </div>
+            <div class="section-card p-8 rounded-2xl card-hover shadow-xl">
+              <h3
+                class="text-2xl font-bold mb-4 text-pink-600 flex items-center gap-3"
+              >
+                <i class="fas fa-bullseye text-3xl"></i> Motivation
+              </h3>
+              <p class="text-slate-700 font-medium leading-relaxed">
+                Creating meaningful software for Kenya and Africa, not just
+                copying Western trends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-extrabold mb-4 text-center gradient-text">
+          Technical Skills
+        </h2>
+        <div class="section-divider mb-12"></div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="section-card p-10 rounded-2xl card-hover shadow-xl">
+            <h3
+              class="text-3xl font-extrabold mb-8 text-blue-600 flex items-center gap-3"
+            >
+              <i class="fas fa-palette text-4xl"></i> Frontend
+            </h3>
+            <div class="space-y-5">
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-react text-4xl text-cyan-500 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold">React</span>
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-html5 text-4xl text-orange-600 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >HTML & CSS</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-js text-4xl text-yellow-500 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >JavaScript</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i
+                  class="fas fa-mobile-alt text-4xl text-purple-600 skill-icon"
+                ></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >Responsive Design</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="section-card p-10 rounded-2xl card-hover shadow-xl">
+            <h3
+              class="text-3xl font-extrabold mb-8 text-emerald-600 flex items-center gap-3"
+            >
+              <i class="fas fa-server text-4xl"></i> Backend
+            </h3>
+            <div class="space-y-5">
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-node-js text-4xl text-green-600 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >Node.js</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fas fa-code text-4xl text-slate-700 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >Express.js</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fas fa-leaf text-4xl text-green-500 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >MongoDB</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fas fa-plug text-4xl text-blue-500 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >REST APIs</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="section-card p-10 rounded-2xl card-hover shadow-xl">
+            <h3
+              class="text-3xl font-extrabold mb-8 text-indigo-600 flex items-center gap-3"
+            >
+              <i class="fas fa-code-branch text-4xl"></i> Languages & Tools
+            </h3>
+            <div class="space-y-5">
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-python text-4xl text-blue-600 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >Python</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i
+                  class="fas fa-copyright text-4xl text-blue-700 skill-icon"
+                ></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >C & C++</span
+                >
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i
+                  class="fas fa-database text-4xl text-orange-600 skill-icon"
+                ></i
+                ><span class="text-slate-800 text-xl font-semibold">SQL</span>
+              </div>
+              <div class="flex items-center space-x-4 group">
+                <i class="fab fa-git-alt text-4xl text-red-600 skill-icon"></i
+                ><span class="text-slate-800 text-xl font-semibold"
+                  >Git & GitHub</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-extrabold mb-4 text-center gradient-text">
+          My Projects
+        </h2>
+        <div class="section-divider mb-12"></div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-rose-400 via-pink-500 to-rose-600 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-star text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Indian Wedding Invitation
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                A wedding invitation website with traditional Indian design
+                elements, RSVP system, and event timeline.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >HTML</span
+                >
+                <span
+                  class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold"
+                  >CSS</span
+                >
+                <span
+                  class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-bold"
+                  >JavaScript</span
+                >
+              </div>
+              <a
+                href="https://desmondtutu254.github.io/Indian-Wedding-Invitation/"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-purple-400 via-pink-500 to-rose-500 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-heart text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Indian Wedding Invitation II
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                Another wedding website featuring vibrant colors, photo
+                galleries, interactive timeline, and guest messages.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >HTML</span
+                >
+                <span
+                  class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold"
+                  >CSS</span
+                >
+                <span
+                  class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-bold"
+                  >JavaScript</span
+                >
+              </div>
+              <a
+                href="https://desmondtutu254.github.io/IndianWeddingInvitation/"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-600 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-briefcase text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Personal Portfolio
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                A clean, modern portfolio showcasing work, skills, and
+                achievements with smooth animations and professional aesthetics.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-bold"
+                  >React</span
+                >
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >Tailwind</span
+                >
+                <span
+                  class="px-4 py-2 bg-violet-100 text-violet-700 rounded-full text-sm font-bold"
+                  >Responsive</span
+                >
+              </div>
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-rocket text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Tech Portfolio Template
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                A sample portfolio demonstrating design and development
+                capabilities for developers needing a professional presence.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >HTML</span
+                >
+                <span
+                  class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold"
+                  >CSS</span
+                >
+                <span
+                  class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-bold"
+                  >Tailwind</span
+                >
+              </div>
+              <a
+                href="https://techportfoliotemplate.netlify.app/"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-green-400 via-emerald-500 to-teal-600 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-hand-rock text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Rock Paper Scissors Game
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                Python CLI implementation of the classic game with clean logic
+                and statistics tracking.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold"
+                  >Python</span
+                >
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >CLI</span
+                >
+                <span
+                  class="px-4 py-2 bg-slate-200 text-slate-700 rounded-full text-sm font-bold"
+                  >Game Logic</span
+                >
+              </div>
+              <a
+                href="https://github.com/DesmondTutu254/RockPaperScissors.py"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View on GitHub <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div
+            class="project-card rounded-2xl overflow-hidden card-hover shadow-xl"
+          >
+            <div
+              class="h-52 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 flex items-center justify-center text-white project-icon-bg relative"
+            >
+              <i class="fas fa-book text-8xl"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-bold text-slate-800">
+                Personal Journal App
+              </h3>
+              <p class="text-slate-600 leading-relaxed">
+                CLI Python journaling with entry management, search
+                functionality, and file-based data persistence.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold"
+                  >Python</span
+                >
+                <span
+                  class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold"
+                  >File I/O</span
+                >
+                <span
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold"
+                  >CLI</span
+                >
+              </div>
+              <a
+                href="https://github.com/DesmondTutu254/Personal-Journal.py"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-bold text-lg"
+                >View on GitHub <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-5xl font-extrabold mb-4 text-center gradient-text">
+          Get In Touch
+        </h2>
+        <div class="section-divider mb-12"></div>
+        <div class="section-card p-12 rounded-3xl shadow-2xl">
+          <div class="text-center space-y-8">
+            <div>
+              <h3 class="text-3xl font-bold mb-4 text-slate-800">
+                Let's Build Something Together
+              </h3>
+              <p
+                class="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed"
+              >
+                Whether you need a developer, want to collaborate, or just
+                discuss tech, snakes, or faith, drop me a message.
+              </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+              <div class="space-y-3">
+                <div
+                  class="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg"
+                >
+                  <i class="fas fa-envelope text-3xl text-white"></i>
+                </div>
+                <p
+                  class="text-slate-500 text-sm font-semibold uppercase tracking-wide"
+                >
+                  Email
+                </p>
+                <a
+                  href="mailto:tutud662@gmail.com"
+                  class="text-blue-600 hover:text-blue-700 transition font-bold block text-lg"
+                  >tutud662@gmail.com</a
+                >
+              </div>
+              <div class="space-y-3">
+                <div
+                  class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg"
+                >
+                  <i class="fas fa-phone text-3xl text-white"></i>
+                </div>
+                <p
+                  class="text-slate-500 text-sm font-semibold uppercase tracking-wide"
+                >
+                  Phone
+                </p>
+                <a
+                  href="tel:+254115820981"
+                  class="text-blue-600 hover:text-blue-700 transition font-bold block text-lg"
+                  >+254 115 820 981</a
+                >
+              </div>
+              <div class="space-y-3">
+                <div
+                  class="w-16 h-16 mx-auto bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg"
+                >
+                  <i class="fas fa-map-marker-alt text-3xl text-white"></i>
+                </div>
+                <p
+                  class="text-slate-500 text-sm font-semibold uppercase tracking-wide"
+                >
+                  Location
+                </p>
+                <p class="text-slate-800 font-bold text-lg">Nairobi, Kenya</p>
+              </div>
+            </div>
+            <div class="pt-8">
+              <p class="text-slate-500 mb-6 font-semibold text-lg">
+                Connect with me on
+              </p>
+              <div class="flex justify-center space-x-6">
+                <a
+                  href="https://github.com/desmondtutu254"
+                  target="_blank"
+                  class="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 hover:from-blue-600 hover:to-purple-600 text-white rounded-2xl flex items-center justify-center transition transform hover:scale-110 shadow-xl contact-icon"
+                  ><i class="fab fa-github text-3xl"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/d.e.s.m.o.n.d_t.u.t.u?igsh=MW92eDBoMWo1c2NOdw=="
+                  target="_blank"
+                  class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 hover:from-blue-600 hover:to-purple-600 text-white rounded-2xl flex items-center justify-center transition transform hover:scale-110 shadow-xl contact-icon"
+                  ><i class="fab fa-instagram text-3xl"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="border-t-2 border-blue-200 py-10 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-lg relative z-10"
+    >
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="text-slate-700 mb-2 font-semibold text-lg">
+          © 2025 Desmond Tutu. All rights reserved.
+        </p>
+        <p class="text-slate-600 font-medium">
+          Computer Science Student | Full-Stack Developer | Nairobi, Kenya
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
